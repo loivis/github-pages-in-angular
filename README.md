@@ -1,27 +1,52 @@
-# Ghpages
+# ghpages
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+Deploy angular application on GitHub Pages with custom domain over https
 
-## Development server
+## requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
++ nodejs
 
-## Code scaffolding
+## steps
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
++ (optional) install `angular-cli`/`angular-cli-ghpages` and create a new project
 
-## Build
+```
+npm install -g @angular/cli angular-cli-ghpages
+ng new ghpages --directory .
+ng serve --open
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
++ add new build script in `package.json`
 
-## Running unit tests
+```
+# without custom domain
+"ghpages": "ng build --prod --base-href https://loivis.github.io/github-pages-in-angular/ && npx ngh --dir dist/ghpages"
+# with custom domain
+"ghpages": "ng build --prod --base-href https://github-pages-in-angular.kinase.wang/ && npx ngh --cname github-pages-in-angular.kinase.wang --dir dist/ghpages"
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
++ build and publish application
 
-## Running end-to-end tests
+```
+npm run ghpages
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
++ (optional) add custom domain `CNAME` record in DNS provider
 
-## Further help
+```
+github-pages-in-angular.kinase.wang -> loivis.github.io
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
++ (optional) wait for certificate to be available and enable https in project settings
+
++ woohoo~~~ I'm online
+
+[without custom domain over https, click me!](https://loivis.github.io/github-pages-in-angular/)
+
+[with custom domain over https, click me!](https://github-pages-in-angular.kinase.wang/)
+
+:confused: in case of 404 which is just a matter of delay, try
+
+[index.html without custom domain](https://loivis.github.io/github-pages-in-angular/index.html)
+
+[index.html with custom domain](https://github-pages-in-angular.kinase.wang/index.html)
